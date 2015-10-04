@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Define the entry point to the React app.
-import index from './app/index';
+import index from './app/Index';
 
 // We need React for server side rendering.
 import React from 'react';

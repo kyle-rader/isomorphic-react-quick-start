@@ -8,7 +8,11 @@ import del from 'del';
 import fs from 'fs';
 import less from 'gulp-less';
 
-var buildDir = './build/';
+let buildDir = './build/';
+
+// Name mainServer because our babel task babelifys all .babel.js
+// files, not just the server (so we are not renaming it to server.js)
+let mainServer = 'server.babel.js';
 
 // Compile jsx files
 gulp.task('jsx', () => {
@@ -37,8 +41,8 @@ gulp.task('build',['jsx', 'babel', 'less']);
 // Start the server in ./build
 gulp.task('server', () => {
   if (node) node.kill();
-  if(!fs.existsSync(`${buildDir}server.js`)){
-    console.log(`${buildDir}server.js not found, retrying...`);
+  if(!fs.existsSync(`${buildDir}${mainServer}`)){
+    console.log(`${buildDir}${mainServer} not found, retrying...`);
     return setTimeout(() => {
       if(!fs.existsSync('./build')){
         console.log('./build folder not found, please run \'gulp build\'');
@@ -47,7 +51,7 @@ gulp.task('server', () => {
       }
     }, 2000);
   }
-  node = spawn('node', [`${buildDir}server.js`], {stdio: 'inherit'});
+  node = spawn('node', [`${buildDir}${mainServer}`], {stdio: 'inherit'});
   node.on('close', (code) => {
     if (code === 8) {
       console.log('Error detected, waiting for changes...');
@@ -65,9 +69,9 @@ gulp.task('reload', () => {
 
 // Watches for file changes
 gulp.task('watch', () => {
-  gulp.watch('./src/**/*.cjsx', ['cjsx','reload']);
-  gulp.watch('./src/**/*.coffee', ['coffee','reload']);
-  gulp.watch('./src/scss/*.scss', ['less']);
+  gulp.watch('./src/**/*.jsx', ['jsx','reload']);
+  gulp.watch('./src/**/*.babel.js', ['babel','reload']);
+  gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/.env.yml', ['env','reload']);
 });
 

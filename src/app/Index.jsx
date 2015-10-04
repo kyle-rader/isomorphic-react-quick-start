@@ -2,6 +2,7 @@ import React from 'react';
 
 // Node does not have a define function, so we use amdefine.
 let define;
+let safeStringify;
 
 if (typeof define !== 'function') {
   define = require('amdefine')(module);
@@ -9,14 +10,7 @@ if (typeof define !== 'function') {
 
 define(require => {
 
-
   class Index extends React.Component {
-    propTypes: {
-      component: React.PropTypes.string.isRequired,
-      title: React.PropTypes.string,
-      data: React.PropTypes.object
-    };
-
     render() {
       let comp = require(`./components/${this.component}/${this.component}`);
       let title = this.title || 'React ES6 JS Start Template';
@@ -55,12 +49,18 @@ define(require => {
         </html>
       );
     };
+
+    safeStringify (obj) {
+      JSON.stringify(obj)
+        .replace(/<\/script/g, '<\\/script')
+        .replace(/<!--/g, '<\\!--');
+    };
   }
 
-  safeStringify = (obj) => {
-    JSON.stringify(obj)
-      .replace(/<\/script/g, '<\\/script')
-      .replace(/<!--/g, '<\\!--');
+  Index.propTypes = {
+    component: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string,
+    data: React.PropTypes.object
   };
 
   return Index;

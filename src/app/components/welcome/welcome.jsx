@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Node does not have a define function, so we use amdefine.
 let define;
 
@@ -6,15 +8,14 @@ if (typeof define !== 'function') {
 }
 
 define(require => {
-  import React from 'react';
 
   class Welcome extends React.Component {
 
-    _handleClick: () => {
+    _handleClick() {
       alert('hii!');
     };
 
-    render: () => {
+    render() {
       return (
         <div>
           <div id="top-bar">

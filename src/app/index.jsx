@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Node does not have a define function, so we use amdefine.
 let define;
 
@@ -6,7 +8,7 @@ if (typeof define !== 'function') {
 }
 
 define(require => {
-  import React from 'react';
+
 
   class Index extends React.Component {
     propTypes: {
@@ -15,7 +17,7 @@ define(require => {
       data: React.PropTypes.object
     };
 
-    render: () => {
+    render() {
       let comp = require(`./components/${this.component}/${this.component}`);
       let title = this.title || 'React ES6 JS Start Template';
       let data = this.data || {};
@@ -46,9 +48,9 @@ define(require => {
             <link rel="stylesheet" href="css/main.css" />
           </head>
           <body>
-            <div id="content" dangerouslySetInnerHTML={__html: preRendered} />
+            <div id="content" dangerouslySetInnerHTML={{__html: preRendered}} />
               <script data-main="index" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.js"></script>
-              <script dangerouslySetInnerHTML={__html:scriptString} />
+              <script dangerouslySetInnerHTML={{__html:scriptString}} />
           </body>
         </html>
       );

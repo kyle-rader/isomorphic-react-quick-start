@@ -18,9 +18,9 @@ define(require => {
       return (
         <div>
           <div id="top-bar">
-            <a href="#">'Some Link'</a>&nbsp;|&nbsp;
-            <a href="#">'Some Link'</a>&nbsp;|&nbsp;
-            <a href="#">'Some Link'</a>&nbsp;|&nbsp;
+            <a href="#">Some Link</a>&nbsp;|&nbsp;
+            <a href="#">Some Link</a>&nbsp;|&nbsp;
+            <a href="#">Some Link</a>&nbsp;|&nbsp;
             <button onClick={this._handleClick}>A button</button>
           </div>
           <h1>Hello, World</h1>

@@ -13,10 +13,10 @@ define(require => {
   class Index extends React.Component {
     render() {
       let compName = this.props.component;
-      let comp = require(`./components/${compName}/${compName}`);
+      let Comp = require(`./components/${compName}/${compName}`);
       let title = this.title || 'React ES6 JS Start Template';
       let data = this.data || {};
-      let preRendered = React.renderToString(<comp {...data} />);
+      let preRendered = React.renderToString(<Comp {...data} />);
 
       // String of script for client.
       let scriptString = `

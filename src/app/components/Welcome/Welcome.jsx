@@ -1,13 +1,12 @@
-import React from 'react';
-
 // Node does not have a define function, so we use amdefine.
-let define;
+var define;
 
 if (typeof define !== 'function') {
   define = require('amdefine')(module);
 }
 
 define(require => {
+  let React = require('react');
 
   class Welcome extends React.Component {
 

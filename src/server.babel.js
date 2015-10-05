@@ -19,7 +19,11 @@ app.use('/css', express.static(`${__dirname}/${process.env.CSS_FOLDER || 'css'}`
 
 // Define React App main route.
 app.get('/', (req, res) => {
-  let rendered = React.renderToStaticMarkup(React.createElement(index, {component:'welcome'}));
+  let rendered = React.renderToStaticMarkup(React.createElement(index, {component:'Welcome'}));
+
+  console.log("Should be rendering on the server:");
+  console.log(rendered);
+
   res.send(rendered);
 });
 

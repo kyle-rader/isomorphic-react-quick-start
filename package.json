@@ -23,7 +23,6 @@
     "gulp-babel": "^5.2.1",
     "gulp-cssmin": "^0.1.7",
     "gulp-less": "^3.0.3",
-    "gulp-react": "^3.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.4",
     "react": "^0.13.2"

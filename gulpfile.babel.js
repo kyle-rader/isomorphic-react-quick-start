@@ -1,32 +1,23 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
-import react from 'gulp-react';
 import babel from 'gulp-babel';
-const spawn = require('child_process').spawn;
-let node;
 import del from 'del';
 import fs from 'fs';
 import less from 'gulp-less';
-
+import child_process from 'child_process';
+const spawn = child_process.spawn;
+let node;
 let buildDir = './build/';
 
 // Name mainServer because our babel task babelifys all .babel.js
 // files, not just the server (so we are not renaming it to server.js)
-let mainServer = 'server.babel.js';
+let mainServer = 'server.js';
 
 // Compile jsx files
-gulp.task('jsx', () => {
-  gulp.src('./src/**/*.jsx')
-    .pipe(babel())
-    .pipe(react())
-    .pipe(gulp.dest(buildDir));
-});
-
-// Compile Coffeescript
 gulp.task('babel', () => {
-  gulp.src('./src/**/*.babel.js')
+  gulp.src('./src/**/*.js*')
     .pipe(babel())
-    .pipe(gulp.dest(buildDir))
+    .pipe(gulp.dest(buildDir));
 });
 
 gulp.task('less', () => {
@@ -36,7 +27,7 @@ gulp.task('less', () => {
 });
 
 // Build the entire app.
-gulp.task('build',['jsx', 'babel', 'less']);
+gulp.task('build',['babel', 'less']);
 
 // Start the server in ./build
 gulp.task('server', () => {
@@ -69,13 +60,12 @@ gulp.task('reload', () => {
 
 // Watches for file changes
 gulp.task('watch', () => {
-  gulp.watch('./src/**/*.jsx', ['jsx','reload']);
-  gulp.watch('./src/**/*.babel.js', ['babel','reload']);
+  gulp.watch('./src/**/*.js*', ['babel','reload']);
   gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/.env.yml', ['env','reload']);
 });
 
-gulp.task('develop', ['build', 'server', 'watch']);
+gulp.task('dev', ['build', 'server', 'watch']);
 
 gulp.task('clean', () => {
   del([

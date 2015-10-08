@@ -1,14 +1,6 @@
-// Node does not have a define function, so we use amdefine.
-var define;
+import React from 'react';
 
-if (typeof define !== 'function') {
-  define = require('amdefine')(module);
-}
-
-define(require => {
-  let React = require('react');
-
-  class Welcome extends React.Component {
+export default class Welcome extends React.Component {
 
     _handleClick() {
       alert('hii!');
@@ -30,8 +22,4 @@ define(require => {
         </div>
       );
     };
-  }
-
-  return Welcome;
-
-});
+}

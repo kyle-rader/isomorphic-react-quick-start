@@ -1,6 +1,9 @@
 import gulp from 'gulp';
-import gutil from 'gulp-util';
 import babel from 'gulp-babel';
+import browserify from 'browserify';
+import babelify from 'babelify';
+import source from 'vinyl-source-stream';
+import uglify from 'gulp-uglify';
 import del from 'del';
 import fs from 'fs';
 import less from 'gulp-less';
@@ -13,10 +16,19 @@ let buildDir = './build/';
 // files, not just the server (so we are not renaming it to server.js)
 let mainServer = 'server.js';
 
+gulp.task('bundle', () => {
+  browserify({entries: './src/app/entry.js', extensions: ['.jsx'], debug: true})
+  .transform(babelify)
+  .bundle()
+  .pipe(source('bundle.js'))
+  .pipe(gulp.dest(`${buildDir}app`));
+});
+
 // Compile jsx files
 gulp.task('babel', () => {
   gulp.src('./src/**/*.js*')
     .pipe(babel())
+    .pipe(uglify())
     .pipe(gulp.dest(buildDir));
 });
 
@@ -27,17 +39,17 @@ gulp.task('less', () => {
 });
 
 // Build the entire app.
-gulp.task('build',['babel', 'less']);
+gulp.task('build',['babel', 'bundle', 'less']);
 
 // Start the server in ./build
 gulp.task('server', () => {
   if (node) node.kill();
-  if(!fs.existsSync(`${buildDir}${mainServer}`)){
+  if (!fs.existsSync(`${buildDir}${mainServer}`)){
     console.log(`${buildDir}${mainServer} not found, retrying...`);
     return setTimeout(() => {
-      if(!fs.existsSync('./build')){
+      if (!fs.existsSync('./build')){
         console.log('./build folder not found, please run \'gulp build\'');
-      }else{
+      } else{
         gulp.start('server');
       }
     }, 2000);
@@ -49,7 +61,6 @@ gulp.task('server', () => {
     }
   });
 });
-
 // Reloads the server
 gulp.task('reload', () => {
   if (node) {
@@ -60,7 +71,7 @@ gulp.task('reload', () => {
 
 // Watches for file changes
 gulp.task('watch', () => {
-  gulp.watch('./src/**/*.js*', ['babel','reload']);
+  gulp.watch('./src/**/*.js*', ['babel', 'bundle', 'reload']);
   gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/.env.yml', ['env','reload']);
 });
@@ -68,9 +79,7 @@ gulp.task('watch', () => {
 gulp.task('dev', ['build', 'server', 'watch']);
 
 gulp.task('clean', () => {
-  del([
-    './build'
-  ]);
+  del(['./build']);
 });
 
 gulp.task('start_server', ['build', 'server']);

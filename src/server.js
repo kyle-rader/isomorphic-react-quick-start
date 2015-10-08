@@ -5,11 +5,14 @@ const app = express();
 // Define server port.
 const port = process.env.PORT || 3000;
 
-// Define the entry point to the React app.
-import index from './app/Index';
+// set up Jade
+app.set('views', './src/views');
+app.set('view engine', 'jade');
 
 // We need React for server side rendering.
 import React from 'react';
+import Router from 'react-router';
+import routes from './app/routes';
 
 // Setup express to serve static routes.
 app.use('/js', express.static(`${__dirname}/${process.env.JS_FOLDER || 'app'}`));
@@ -18,9 +21,11 @@ app.use('/css', express.static(`${__dirname}/${process.env.CSS_FOLDER || 'css'}`
 // TODO: Add API and AUTH routes to server.
 
 // Define React App main route.
-app.get('/', (req, res) => {
-  let rendered = React.renderToStaticMarkup(React.createElement(index, {component:'Welcome'}));
-  res.send(rendered);
+app.get('/*', (req, res) => {
+  Router.run(routes, req.url, Handler => {
+    let rendered = React.renderToString(<Handler />);
+    res.render('index', { content: rendered });
+  });
 });
 
 // Start the server.

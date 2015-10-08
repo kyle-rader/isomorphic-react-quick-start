@@ -7,6 +7,7 @@ import uglify from 'gulp-uglify';
 import del from 'del';
 import fs from 'fs';
 import less from 'gulp-less';
+import cssmin from 'gulp-cssmin';
 import child_process from 'child_process';
 const spawn = child_process.spawn;
 let node;
@@ -35,6 +36,7 @@ gulp.task('babel', () => {
 gulp.task('less', () => {
   gulp.src('./src/less/*.less')
     .pipe(less())
+    .pipe(cssmin())
     .pipe(gulp.dest(`${buildDir}css`));
 });
 
@@ -73,6 +75,7 @@ gulp.task('reload', () => {
 gulp.task('watch', () => {
   gulp.watch('./src/**/*.js*', ['babel', 'bundle', 'reload']);
   gulp.watch('./src/scss/*.less', ['less']);
+  gulp.watch('./src/views/*.jade', ['reload']);
   gulp.watch('./src/.env.yml', ['env','reload']);
 });
 

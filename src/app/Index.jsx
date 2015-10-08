@@ -14,9 +14,8 @@ define(require => {
     render() {
       let compName = this.props.component;
       let Comp = require(`./components/${compName}/${compName}`);
-      let title = this.title || 'React ES6 JS Start Template';
+      let title = this.title || 'Isomorphic React Quick Start';
       let data = this.data || {};
-      let preRendered = React.renderToString(<Comp {...data} />);
 
       // String of script for client.
       let scriptString = `
@@ -43,7 +42,9 @@ define(require => {
             <link rel="stylesheet" href="css/main.css" />
           </head>
           <body>
-            <div id="content" dangerouslySetInnerHTML={{__html: preRendered}} />
+            <div id="content" >
+              <Comp {...data} />
+            </div>
               <script data-main="Index" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.js"></script>
               <script dangerouslySetInnerHTML={{__html:scriptString}} />
           </body>

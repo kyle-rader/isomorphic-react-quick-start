@@ -12,8 +12,9 @@ Fear not.  I spent roughly 30 hours inspecting and trying a plethora of differen
 * MongoDB (coming soon)
 
 #### Client Side
+* JQuery
 * ReactJS
-* Bootstrap (coming soon)
+* Bootstrap
 
 ## Tutorials and blog posts I used heavily.
 
@@ -32,4 +33,4 @@ If you didn't find my setup exactly to your liking, find another, there are many
 
 > Kyle W. Rader <br>
 > kyle.rader@ieee.org <br>
-> <small>Last Edit: Oct 8, 2015</small>
+> <small>Last Edit: Oct 10, 2015</small>

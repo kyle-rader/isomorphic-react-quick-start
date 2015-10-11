@@ -26,8 +26,8 @@ import routes from './app/routes';
 // Setup express to serve static routes.
 app.use('/js',  express.static(`${__dirname}/${process.env.JS_FOLDER || 'app'}`));
 app.use('/css', express.static(`${__dirname}/${process.env.CSS_FOLDER || 'css'}`));
-app.use('/bsjs',  express.static(`${__dirname}/../node_modules/bootstrap/dist/js`));
 app.use('/assets', express.static(`${__dirname}/assets`));
+app.use('/css/themes/*/assets', express.static(`${__dirname}/assets`));
 
 // TODO: Add API and AUTH routes to server.
 

@@ -43,6 +43,9 @@ gulp.task('less', () => {
 gulp.task('copy', () => {
   gulp.src('./*.env')
     .pipe(gulp.dest(buildDir));
+  gulp.src('./semantic/dist/*.min.css').pipe(gulp.dest(`${buildDir}css`));
+  gulp.src('./semantic/dist/*.min.js').pipe(gulp.dest(`${buildDir}app`));
+  gulp.src('./semantic/src/themes/default/assets/fonts/*').pipe(gulp.dest(`${buildDir}assets/fonts`));
   gulp.src('./src/assets/**/*')
   .pipe(gulp.dest(`${buildDir}assets`));
 });
@@ -85,7 +88,7 @@ gulp.task('watch', () => {
   gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/views/*.jade', ['reload']);
   gulp.watch('./src/.env.yml', ['env','reload']);
-  gulp.watch('./src/assets/**/*', ['copy']);
+  gulp.watch(['./src/assets/**/*', './semantic/dist/*.min*'], ['copy']);
   gulp.watch('./*.env', ['copy', 'reload']);
 });
 

@@ -40,8 +40,13 @@ gulp.task('less', () => {
     .pipe(gulp.dest(`${buildDir}css`));
 });
 
+gulp.task('assets', () => {
+  gulp.src('./src/assets/**/*')
+  .pipe(gulp.dest(`${buildDir}assets`));
+});
+
 // Build the entire app.
-gulp.task('build',['babel', 'bundle', 'less']);
+gulp.task('build',['babel', 'bundle', 'less', 'assets']);
 
 // Start the server in ./build
 gulp.task('server', () => {
@@ -77,6 +82,7 @@ gulp.task('watch', () => {
   gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/views/*.jade', ['reload']);
   gulp.watch('./src/.env.yml', ['env','reload']);
+  gulp.watch('./src/assets/**/*', ['assets']);
 });
 
 gulp.task('dev', ['build', 'server', 'watch']);

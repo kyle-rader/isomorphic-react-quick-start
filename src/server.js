@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.load();
 // Create an express web app.
 import express from 'express';
 const app = express();
@@ -18,6 +20,7 @@ import routes from './app/routes';
 app.use('/js',  express.static(`${__dirname}/${process.env.JS_FOLDER || 'app'}`));
 app.use('/css', express.static(`${__dirname}/${process.env.CSS_FOLDER || 'css'}`));
 app.use('/bsjs',  express.static(`${__dirname}/../node_modules/bootstrap/dist/js`));
+app.use('/assets', express.static(`${__dirname}/assets`));
 
 // TODO: Add API and AUTH routes to server.
 
@@ -25,7 +28,7 @@ app.use('/bsjs',  express.static(`${__dirname}/../node_modules/bootstrap/dist/js
 app.get('/*', (req, res) => {
   Router.run(routes, req.url, Handler => {
     let rendered = React.renderToString(<Handler />);
-    res.render('index', { content: rendered });
+    res.render('index', { content: rendered, title: process.env.NODE_ENV == 'production' ? 'Agendi' : 'Agendi (Dev)' });
   });
 });
 

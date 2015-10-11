@@ -1,5 +1,12 @@
+// Setup env variables with dotenv.
 import dotenv from 'dotenv';
-dotenv.load();
+dotenv.config({
+  path: process.env.NODE_ENV == 'production' ?
+    './production.env' :
+    './development.env',
+    silent: true
+});
+
 // Create an express web app.
 import express from 'express';
 const app = express();
@@ -28,7 +35,7 @@ app.use('/assets', express.static(`${__dirname}/assets`));
 app.get('/*', (req, res) => {
   Router.run(routes, req.url, Handler => {
     let rendered = React.renderToString(<Handler />);
-    res.render('index', { content: rendered, title: process.env.NODE_ENV == 'production' ? 'Agendi' : 'Agendi (Dev)' });
+    res.render('index', { content: rendered, title: process.env.TITLE });
   });
 });
 

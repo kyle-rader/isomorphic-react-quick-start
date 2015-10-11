@@ -40,13 +40,15 @@ gulp.task('less', () => {
     .pipe(gulp.dest(`${buildDir}css`));
 });
 
-gulp.task('assets', () => {
+gulp.task('copy', () => {
+  gulp.src('./*.env')
+    .pipe(gulp.dest(buildDir));
   gulp.src('./src/assets/**/*')
   .pipe(gulp.dest(`${buildDir}assets`));
 });
 
 // Build the entire app.
-gulp.task('build',['babel', 'bundle', 'less', 'assets']);
+gulp.task('build',['babel', 'bundle', 'less', 'copy']);
 
 // Start the server in ./build
 gulp.task('server', () => {
@@ -71,6 +73,7 @@ gulp.task('server', () => {
 // Reloads the server
 gulp.task('reload', () => {
   if (node) {
+    node.kill();
     console.log('Reloading Server');
     gulp.start('server');
   }
@@ -82,7 +85,8 @@ gulp.task('watch', () => {
   gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/views/*.jade', ['reload']);
   gulp.watch('./src/.env.yml', ['env','reload']);
-  gulp.watch('./src/assets/**/*', ['assets']);
+  gulp.watch('./src/assets/**/*', ['copy']);
+  gulp.watch('./*.env', ['copy', 'reload']);
 });
 
 gulp.task('dev', ['build', 'server', 'watch']);

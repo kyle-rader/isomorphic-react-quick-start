@@ -84,7 +84,7 @@ gulp.task('reload', () => {
 
 // Watches for file changes
 gulp.task('watch', () => {
-  gulp.watch('./src/**/*.js*', ['babel', 'bundle', 'reload']);
+  gulp.watch(['./src/**/*.js*', './src*.js*'], ['babel', 'bundle', 'reload']);
   gulp.watch('./src/scss/*.less', ['less']);
   gulp.watch('./src/views/*.jade', ['reload']);
   gulp.watch('./src/.env.yml', ['env','reload']);

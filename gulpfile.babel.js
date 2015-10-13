@@ -18,7 +18,7 @@ let buildDir = './build/';
 let mainServer = 'server.js';
 
 gulp.task('bundle', () => {
-  browserify({entries: './src/app/entry.js', extensions: ['.jsx'], debug: true})
+  return browserify({entries: './src/app/entry.js', extensions: ['.jsx'], debug: true})
   .transform(babelify)
   .bundle()
   .pipe(source('bundle.js'))
@@ -27,14 +27,14 @@ gulp.task('bundle', () => {
 
 // Compile jsx files
 gulp.task('babel', () => {
-  gulp.src('./src/**/*.js*')
+  return gulp.src('./src/**/*.js*')
     .pipe(babel())
     .pipe(uglify())
     .pipe(gulp.dest(buildDir));
 });
 
 gulp.task('less', () => {
-  gulp.src('./src/less/*.less')
+  return gulp.src('./src/less/*.less')
     .pipe(less())
     .pipe(cssmin())
     .pipe(gulp.dest(`${buildDir}css`));
@@ -46,7 +46,7 @@ gulp.task('copy', () => {
   gulp.src('./semantic/dist/*.min.css').pipe(gulp.dest(`${buildDir}css`));
   gulp.src('./semantic/dist/*.min.js').pipe(gulp.dest(`${buildDir}app`));
   gulp.src('./semantic/src/themes/default/assets/fonts/*').pipe(gulp.dest(`${buildDir}assets/fonts`));
-  gulp.src('./src/assets/**/*')
+  return gulp.src('./src/assets/**/*')
   .pipe(gulp.dest(`${buildDir}assets`));
 });
 
@@ -73,8 +73,9 @@ gulp.task('server', () => {
     }
   });
 });
+
 // Reloads the server
-gulp.task('reload', () => {
+gulp.task('reload', ['build'], () => {
   if (node) {
     node.kill();
     console.log('Reloading Server');
@@ -84,12 +85,8 @@ gulp.task('reload', () => {
 
 // Watches for file changes
 gulp.task('watch', () => {
-  gulp.watch(['./src/**/*.js*', './src*.js*'], ['babel', 'bundle', 'reload']);
-  gulp.watch('./src/scss/*.less', ['less']);
-  gulp.watch('./src/views/*.jade', ['reload']);
-  gulp.watch('./src/.env.yml', ['env','reload']);
+  gulp.watch(['./src/**/*.js*', './src*.js*'], ['reload']);
   gulp.watch(['./src/assets/**/*', './semantic/dist/*.min*'], ['copy']);
-  gulp.watch('./*.env', ['copy', 'reload']);
 });
 
 gulp.task('dev', ['build', 'server', 'watch']);

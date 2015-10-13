@@ -31,6 +31,7 @@
     "jade": "^1.11.0",
     "react": "^0.13.2",
     "react-router": "^0.13.4",
+    "semantic-ui": "^2.1.4",
     "vinyl-source-stream": "^1.1.0"
   }
 }

@@ -10,9 +10,14 @@ export default class Welcome extends React.Component {
     }
 
     render() {
+      let text = '';
+      for (let i = 0; i < 1000; i++) {
+        text += 'These are words.  These are more... words!<br>';
+      }
       return (
         <div className="ui container">
           <img className="ui centered medium image hidden transition agendi-landing-img" src="/assets/img/agendi-black.svg"></img>
+          <p>{text}</p>
         </div>
       );
     };

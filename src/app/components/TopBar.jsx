@@ -2,19 +2,33 @@ import React from 'react';
 
 export default class TopBar extends React.Component {
 
-  menuClick() {
-    console.log('Click button');
-    $('.ui.sidebar.main-sidebar')
-      .sidebar('setting', 'transition', 'overlay')
-      .sidebar('toggle', 'overlay');
+  componentDidMount() {
+    let mainMenu = $('#main-menu');
+    mainMenu.sticky({
+      context: mainMenu.parent()
+    });
+    mainMenu.find('.ui.dropdown').dropdown({});
   }
 
   render() {
     return (
-      <div className="ui menu">
-        <div className="ui container">
-          <a className="item" onClick={this.menuClick}>
-            <i className="content icon"></i>Menu
+      <div id="main-menu" className="ui inverted top sticky menu">
+        <div className="ui dropdown item">
+          <i className="bars icon"></i>Menu
+          <div className="menu">
+            <a className="item">
+              Home <i className="home icon"></i>
+            </a>
+            <a className="item">
+              Search <i className="search icon"></i>
+            </a>
+          </div>
+        </div>
+
+        <div className="right menu">
+          <a className="item">
+            <i className="user icon"></i>
+            Log In
           </a>
         </div>
       </div>

@@ -86,6 +86,7 @@ gulp.task('reload', ['build'], () => {
 // Watches for file changes
 gulp.task('watch', () => {
   gulp.watch(['./src/**/*.js*', './src*.js*'], ['reload']);
+  gulp.watch('./src/**/*.less', ['less']);
   gulp.watch(['./src/assets/**/*', './semantic/dist/*.min*'], ['copy']);
 });
 

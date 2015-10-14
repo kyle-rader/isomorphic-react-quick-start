@@ -12,24 +12,29 @@ export default class TopBar extends React.Component {
 
   render() {
     return (
-      <div id="main-menu" className="ui inverted top sticky menu">
-        <div className="ui dropdown item">
-          <i className="bars icon"></i>Menu
-          <div className="menu">
+      <div id="main-menu" className="ui small inverted top sticky labeled icon menu">
+        <div className="ui container">
+          <div className="ui dropdown item">
+            <i className="bars icon"></i>Menu
+            <div className="menu">
+              <a className="item">
+                <i className="home icon"></i>Home
+              </a>
+              <a className="item">
+                <i className="search icon"></i>Search
+              </a>
+              <a className="item">
+                <i className="info icon"></i>About
+              </a>
+            </div>
+          </div>
+
+          <div className="right menu">
             <a className="item">
-              Home <i className="home icon"></i>
-            </a>
-            <a className="item">
-              Search <i className="search icon"></i>
+              <i className="power off icon"></i>
+              Log In
             </a>
           </div>
-        </div>
-
-        <div className="right menu">
-          <a className="item">
-            <i className="user icon"></i>
-            Log In
-          </a>
         </div>
       </div>
     );

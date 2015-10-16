@@ -30,6 +30,8 @@ Using Browserify with Gulp to do ES6 and JSX transformation with Babelify and cr
 * [A giant list of starter kits](https://github.com/enaqx/awesome-react#isomorphic-apps) <br>
 If you didn't find my setup exactly to your liking, find another, there are many.  Good luck!
 
+* [How does react-router work?](https://github.com/rackt/react-router/blob/0.13.x/docs/guides/overview.md)
+
 
 > Kyle W. Rader <br>
 > kyle.rader@ieee.org <br>

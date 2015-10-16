@@ -1,12 +1,14 @@
 import React from 'react';
 
-export default class Welcome extends React.Component {
+export default class Home extends React.Component {
 
     componentDidMount() {
-      $('.ui.image.agendi-landing-img').transition({
-        animation: 'fade in',
-        duration: 1500
-      });
+      setTimeout(() => {
+        $('.ui.image.agendi-landing-img').transition({
+          animation: 'fade in',
+          duration: 1500
+        });
+      }, 40);
     }
 
     render() {

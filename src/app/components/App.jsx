@@ -1,6 +1,8 @@
 import React from 'react';
 import TopBar from './TopBar';
-import Welcome from './Welcome';
+import Router from 'react-router';
+
+let RouteHandler = Router.RouteHandler;
 
 export default class App extends React.Component {
 
@@ -11,7 +13,7 @@ export default class App extends React.Component {
     return (
       <div>
         <TopBar />
-        <Welcome />
+        <RouteHandler />
       </div>
     );
   }

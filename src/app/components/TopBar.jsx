@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class TopBar extends React.Component {
 
@@ -17,15 +18,15 @@ export default class TopBar extends React.Component {
           <div className="ui dropdown item">
             <i className="bars icon"></i>Menu
             <div className="menu">
-              <a className="item">
+              <Link className="item" to="home">
                 <i className="home icon"></i>Home
-              </a>
-              <a className="item">
+              </Link>
+              <Link className="item" to="search">
                 <i className="search icon"></i>Search
-              </a>
-              <a className="item">
+              </Link>
+              <Link className="item" to="about">
                 <i className="info icon"></i>About
-              </a>
+              </Link>
             </div>
           </div>
 

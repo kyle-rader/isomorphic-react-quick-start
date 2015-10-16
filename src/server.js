@@ -31,6 +31,10 @@ app.use('/css/themes/*/assets', express.static(`${__dirname}/assets`));
 
 // TODO: Add API and AUTH routes to server.
 
+// Add Parsing Enginges to routes.
+import Parsers from './middleware/parsingEngines/Parsers';
+app.use('/parseApi', Parsers);
+
 // Define React App main route.
 app.get('/*', (req, res) => {
   Router.run(routes, req.url, Handler => {

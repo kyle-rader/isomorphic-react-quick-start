@@ -18,7 +18,7 @@ let buildDir = './build/';
 let mainServer = 'server.js';
 
 gulp.task('bundle', () => {
-  return browserify({entries: './src/app/entry.js', extensions: ['.jsx'], debug: true})
+  return browserify({entries: './src/app/entry.js', extensions: ['.jsx', '.js'], debug: true})
   .transform(babelify)
   .bundle()
   .pipe(source('bundle.js'))
@@ -29,7 +29,7 @@ gulp.task('bundle', () => {
 gulp.task('babel', () => {
   return gulp.src('./src/**/*.js*')
     .pipe(babel())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest(buildDir));
 });
 

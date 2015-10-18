@@ -8,13 +8,13 @@ let colleges = {
 
 router.get('/searchCriteria/:college', (req, res) => {
   let collegeKey = colleges[req.params.college] || 'default';
-  let College = require(`./${collegeKey}`);
+  let College = require(`../../models/colleges/${collegeKey}`);
   let college = new College();
 
-  college.getSearchCriteria((err, innerRes, body) => {
-    console.log("Got response from Classfinder");
-    res.send(body);
+  college.getSearchCriteria((err, criteria) => {
+    res.status(err !== null ? 400 : 200).send( err !== null ? err : criteria);
   });
+
 });
 
 module.exports = router;

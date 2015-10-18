@@ -31,9 +31,13 @@ export default class TopBar extends React.Component {
           </div>
 
           <div className="right menu">
-            <a className="item">
+            <Link className="item" to="login">
               <i className="power off icon"></i>
               Log In
+            </Link>
+            <a className="item" to="login">
+              <i className="signup icon"></i>
+              Sign Up
             </a>
           </div>
         </div>

@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({
   path: process.env.NODE_ENV == 'production' ?
     './production.env' :
-    './development.env',
-    silent: true
+    './development.env'
 });
 
 // Create an express web app.
@@ -29,8 +28,6 @@ app.use('/css', express.static(`${__dirname}/${process.env.CSS_FOLDER || 'css'}`
 app.use('/assets', express.static(`${__dirname}/assets`));
 app.use('/css/themes/*/assets', express.static(`${__dirname}/assets`));
 
-// TODO: Add API and AUTH routes to server.
-
 // Add Parsing Enginges to routes.
 import Parsers from './middleware/parsingEngines/Parsers';
 app.use('/parseApi', Parsers);
@@ -43,10 +40,15 @@ app.get('/*', (req, res) => {
   });
 });
 
-// Start the server.
+// Initialize StormPath User management.
+// (Must be the last initialized middleware! )
+//import stormpath from 'stormpath';
+
+// Create the server
 import http from 'http';
 let server = http.createServer(app);
 
+// Start listening once Stormpath is ready.
 server.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
 });

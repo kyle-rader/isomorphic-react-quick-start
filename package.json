@@ -1,17 +1,15 @@
 {
-  "name": "react-starter-coffee-tutorial",
+  "name": "Agendi",
   "version": "0.0.1",
-  "description": "A tutorial on the react-starter template",
-  "main": "build/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "A scheduling app",
+  "main": "src/server.js",
   "keywords": [
     "react",
-    "starter",
-    "isomorphic"
+    "express",
+    "isomorphic",
+    "calendar builder"
   ],
-  "author": "Ben Zhang <benzhangniu@gmail.com> (https://benzhang.xyz)",
+  "author": "Kyle W. Rader <kyle.rader@ieee.org> (https://kylerader.ninja)",
   "license": "ISC",
   "dependencies": {
     "babel": "^5.8.23",
@@ -23,14 +21,13 @@
     "del": "^1.1.1",
     "dotenv": "^1.2.0",
     "express": "^4.12.3",
-    "express-stormpath": "^2.0.11",
+    "express-stormpath": "^2.0.12",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.3.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-less": "^3.0.3",
     "gulp-uglify": "^1.4.2",
     "jade": "^1.11.0",
-    "mongoose": "^4.1.11",
     "react": "^0.13.3",
     "react-router": "^0.13.4",
     "request": "^2.65.0",

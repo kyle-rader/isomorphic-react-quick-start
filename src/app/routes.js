@@ -6,6 +6,7 @@ import App from './components/App';
 import Home from './components/Home';
 import About from './components/About';
 import Search from './components/Search';
+import Login from './components/Login';
 
 export default (
   <Route name="app" handler={App} path="/">
@@ -13,5 +14,6 @@ export default (
     <Route name="home" handler={Home} />
     <Route name="about" handler={About} />
     <Route name="search" handler={Search} />
+    <Route name="login" handler={Login} />
   </Route>
 );

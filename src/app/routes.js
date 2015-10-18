@@ -15,5 +15,7 @@ export default (
     <Route name="about" handler={About} />
     <Route name="search" handler={Search} />
     <Route name="login" handler={Login} />
+
+    <Route path="*" handler={Home} />
   </Route>
 );

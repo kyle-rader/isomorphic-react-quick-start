@@ -19,14 +19,14 @@ export default class Home extends React.Component {
                   <div className="field">
                     <label>Email</label>
                     <div className="ui left icon input">
-                      <input className="ui input" name="email" type="text" placeholder="email@exmaple.com" autoComplete="off" />
+                      <input className="ui input" name="email" type="text" autoComplete="off" />
                       <i className="user icon"></i>
                     </div>
                   </div>
                   <div className="field">
                     <label>Password</label>
                       <div className="ui left icon input">
-                        <input className="ui input" name="password" type="password" placeholder="***********" autoComplete="off" />
+                        <input className="ui input" name="password" type="password" autoComplete="off" />
                         <i className="lock icon"></i>
                       </div>
                   </div>
@@ -39,7 +39,7 @@ export default class Home extends React.Component {
               </div>
 
               <div className="six wide center aligned column">
-                <div className="ui vertical buttons">
+                <div className="ui vertical large buttons">
                   <button className="ui facebook button">
                     <i className="facebook icon"></i> Facebook
                   </button>

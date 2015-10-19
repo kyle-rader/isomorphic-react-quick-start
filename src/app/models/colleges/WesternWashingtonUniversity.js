@@ -70,7 +70,7 @@ export default class WesternWashingtonUniversity extends College {
       if (item.attribs.value !== '')
         criteria['sel_cdts'].push({name:item.children[0].data.replace(/\n\s*/, ''), value: item.attribs.value});
     });
-    console.log(criteria);
+    console.log(`Successful search criteria parse for ${this.name}`);
 
     return criteria;
   }

@@ -8,8 +8,8 @@ let colleges = {
 
 router.get('/searchCriteria/:college', (req, res) => {
   let collegeKey = colleges[req.params.college] || 'default';
-  let College = require(`../../models/colleges/${collegeKey}`);
-  let college = new College();
+  let College = require(`../../app/models/colleges/${collegeKey}`);
+  let college = new College(collegeKey);
 
   college.getSearchCriteria((err, criteria) => {
     res.status(err !== null ? 400 : 200).send( err !== null ? err : criteria);

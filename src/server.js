@@ -32,23 +32,49 @@ app.use('/css/themes/*/assets', express.static(`${__dirname}/assets`));
 import Parsers from './middleware/parsingEngines/Parsers';
 app.use('/parseApi', Parsers);
 
+// Initialize StormPath User management.
+// (Must be the last initialized middleware! )
+import stormpath from 'express-stormpath';
+app.use(stormpath.init(app, {
+  website: true,
+  web: {
+    login: {
+      uri: '/sp/login'
+    },
+    register: {
+      uri: '/sp/register'
+    }
+  },
+  postLoginHandler: (account, req, res, next) => {
+    console.log(`User: ${account.email}, just logged in!`);
+    res.json(account);
+  }
+}));
+
+// Simple POST route for React to check logged in status of user.
+app.post('/getUser', (req, res) => {
+  res.status(200).json(req.user && req.user.tenant ? req.user : {err: 'Not logged in.'});
+});
+
 // Define React App main route.
+import LoginActions from './app/actions/LoginActions';
 app.get('/*', (req, res) => {
+  if (req.user && req.user.tenant) {
+    LoginActions.loginUser(req.user);
+  }
   Router.run(routes, req.url, Handler => {
-    let rendered = React.renderToString(<Handler />);
+    let rendered = React.renderToString(<Handler user={req.user ? req.user : null} />);
     res.render('index', { content: rendered, title: process.env.TITLE });
   });
 });
-
-// Initialize StormPath User management.
-// (Must be the last initialized middleware! )
-//import stormpath from 'stormpath';
 
 // Create the server
 import http from 'http';
 let server = http.createServer(app);
 
 // Start listening once Stormpath is ready.
-server.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
+app.on('stormpath.ready', () => {
+  server.listen(port, () => {
+    console.log(`Listening on http://localhost:${port}`);
+  });
 });

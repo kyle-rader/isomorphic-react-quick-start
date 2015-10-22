@@ -1,28 +1,33 @@
 import React from 'react';
+import AuthenticatedComponent from './AuthenticatedComponent';
 
-export default class Search extends React.Component {
+export default AuthenticatedComponent(class Search extends React.Component {
 
-    componentDidMount() {
-      console.log('Getting html');
+  constructor(props) {
+    super(props);
+  }
 
-      $.ajax({
-        url: '/parseApi/searchCriteria/wwu',
-        success: (res) => {
-          console.log(res);
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
+  componentDidMount() {
 
-    }
+    console.log('Getting html');
 
-    render() {
+    $.ajax({
+      url: '/parseApi/searchCriteria/wwu',
+      success: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
-      return (
-        <div className="ui container">
-          <div id="dump-html"></div>
-        </div>
-      );
-    };
-}
+  render() {
+
+    return (
+      <div className="ui container">
+        <div ref="dumpHtml">{this.props.user ? this.props.user.email : 'No User!'}</div>
+      </div>
+    );
+  };
+});

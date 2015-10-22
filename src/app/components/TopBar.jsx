@@ -12,6 +12,30 @@ export default class TopBar extends React.Component {
   }
 
   render() {
+    let rightMenu;
+    if (this.props.loggedIn) {
+      rightMenu =
+      <div className="right menu">
+        <a className="item" onClick={this.props.logoutCallback}>
+          <i className="power off icon"></i>
+          Log Out
+        </a>
+      </div>;
+    }
+    else {
+      rightMenu =
+      <div className="right menu">
+        <Link className="item" to="login">
+          <i className="power off icon"></i>
+          Log In
+        </Link>
+        <a className="item" to="login">
+          <i className="signup icon"></i>
+          Sign Up
+        </a>
+      </div>;
+    }
+
     return (
       <div id="main-menu" className="ui small inverted top sticky labeled icon menu">
         <div className="ui container">
@@ -29,17 +53,7 @@ export default class TopBar extends React.Component {
               </Link>
             </div>
           </div>
-
-          <div className="right menu">
-            <Link className="item" to="login">
-              <i className="power off icon"></i>
-              Log In
-            </Link>
-            <a className="item" to="login">
-              <i className="signup icon"></i>
-              Sign Up
-            </a>
-          </div>
+          {rightMenu}
         </div>
       </div>
     );

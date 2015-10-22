@@ -6,7 +6,6 @@ import RouterContainer from './services/RouterContainer';
 import App from './components/App';
 import Home from './components/Home';
 import About from './components/About';
-import Search from './components/Search';
 import Login from './components/Login';
 
 let routes = (
@@ -14,7 +13,6 @@ let routes = (
     <DefaultRoute handler={Home} />
     <Route name="home" handler={Home} />
     <Route name="about" handler={About} />
-    <Route name="search" handler={Search} />
     <Route name="login" handler={Login} />
     <Route path="*" handler={Home} />
   </Route>

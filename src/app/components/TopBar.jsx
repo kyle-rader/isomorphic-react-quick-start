@@ -45,9 +45,6 @@ export default class TopBar extends React.Component {
               <Link className="item" to="home">
                 <i className="home icon"></i>Home
               </Link>
-              <Link className="item" to="search">
-                <i className="search icon"></i>Search
-              </Link>
               <Link className="item" to="about">
                 <i className="info icon"></i>About
               </Link>

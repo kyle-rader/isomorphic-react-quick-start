@@ -28,10 +28,6 @@ app.use('/css', express.static(`${__dirname}/${process.env.CSS_FOLDER || 'css'}`
 app.use('/assets', express.static(`${__dirname}/assets`));
 app.use('/css/themes/*/assets', express.static(`${__dirname}/assets`));
 
-// Add Parsing Enginges to routes.
-import Parsers from './middleware/parsingEngines/Parsers';
-app.use('/parseApi', Parsers);
-
 // Initialize StormPath User management.
 // (Must be the last initialized middleware! )
 import stormpath from 'express-stormpath';

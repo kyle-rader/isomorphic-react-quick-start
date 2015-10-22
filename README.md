@@ -18,6 +18,9 @@ Fear not.  I spent roughly 30 hours inspecting and trying a plethora of differen
 
 ## Tutorials and blog posts I used heavily.
 
+* [Martin Gontovnikas | Adding authentication to your react Flux app](https://auth0.com/blog/2015/04/09/adding-authentication-to-your-react-flux-app/) <br>
+And the [associated (more up to date) repo](https://github.com/auth0/react-flux-jwt-authentication-sample)
+
 * [Ben Zhang | Creating an Isomorphic Web Application with ReactJS and Express](https://benzhang.xyz/reactjs/isomorphic/2015/05/02/isomorphic-webapp-react-express-coffee/) <br>
 (The basis of this repo)
 
@@ -35,4 +38,4 @@ If you didn't find my setup exactly to your liking, find another, there are many
 
 > Kyle W. Rader <br>
 > kyle.rader@ieee.org <br>
-> <small>Last Edit: Oct 10, 2015</small>
+> <small>Last Edit: Oct 21, 2015</small>

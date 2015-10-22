@@ -9,12 +9,13 @@ Fear not.  I spent roughly 30 hours inspecting and trying a plethora of differen
 * Express
 * ReactJS
 * Gulp build chain
+* [express-stormpath](https://stormpath.com/) for user auth.
 * MongoDB (coming soon)
 
 #### Client Side
 * JQuery
 * ReactJS
-* Bootstrap
+* Semantic-UI
 
 ## Tutorials and blog posts I used heavily.
 

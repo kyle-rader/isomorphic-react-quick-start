@@ -38,5 +38,5 @@ If you didn't find my setup exactly to your liking, find another, there are many
 
 
 > Kyle W. Rader <br>
-> kyle.rader@ieee.org <br>
+> kyle@kylerader.ninja <br>
 > <small>Last Edit: Oct 21, 2015</small>
